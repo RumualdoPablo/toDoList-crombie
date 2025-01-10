@@ -39,7 +39,7 @@ export default async function RootLayout({
           <Link href="/tasks">Tasks</Link>
           {session ?
             <SignOut /> :
-            <SignIn />
+            <Link href="/login">Login</Link>
           }
         </nav>
         <TaskProvider>
