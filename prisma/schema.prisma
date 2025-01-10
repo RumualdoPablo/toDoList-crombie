@@ -10,7 +10,12 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  url      = env("DATABASE_URL")
+  url      = "mysql://root:root@localhost:3306/mydb"
+}
+
+enum Role {
+  USER
+  ADMIN
 }
 
 model User {
@@ -18,6 +23,7 @@ model User {
   name  String
   email String @unique
   tasks Task[]
+  role  Role   @default(USER)
 }
 
 model Task {
