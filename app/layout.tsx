@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { TaskProvider } from "@/context/TaskContext";
 import Link from "next/link";
-import SignIn from "@/components/auth/SignIn";
+import SignIn from "@/components/auth/GithubSignIn";
 import { SignOut } from "@/components/auth/SignOut";
 import { auth } from "@/auth";
 
@@ -39,7 +39,7 @@ export default async function RootLayout({
           <Link href="/tasks">Tasks</Link>
           {session ?
             <SignOut /> :
-            <Link href="/login">Login</Link>
+            <Link href="/auth/login">Login</Link>
           }
         </nav>
         <TaskProvider>
