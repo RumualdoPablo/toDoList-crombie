@@ -4,16 +4,16 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient({});
 
 export async function DELETE(
-  req: Request,
+  req: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  const taskId = parseInt(params.id);
+  const { id } = await params;
 
   await prisma.task.delete({
-    where: { id: taskId },
+    where: { id: parseInt(id) },
   });
 
-  return new Response(JSON.stringify({ message: "Task deleted" }), {
+  return new NextResponse(JSON.stringify({ message: "Task deleted" }), {
     status: 200,
   });
 }
