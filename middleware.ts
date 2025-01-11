@@ -9,7 +9,7 @@ export async function middleware(req: NextRequest) {
   }
 
   // Verificar si el usuario tiene el rol de ADMIN
-  if (req.nextUrl.pathname.startsWith("/tasks") && token.role !== "ADMIN") {
+  if (req.nextUrl.pathname.startsWith("/tasks") && !token.role) {
     return NextResponse.redirect(new URL("/unauthorized", req.url));
   }
 

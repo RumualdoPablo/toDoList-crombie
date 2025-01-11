@@ -1,15 +1,16 @@
 'use client';
 
 import { useTaskContext } from '@/context/TaskContext';
+import { useSession } from 'next-auth/react';
 
 export default function TaskList() {
+    const { data: session }: any = useSession()
     const { tasks, removeTask } = useTaskContext()
 
     const handleDelete = async (id: number) => {
         await fetch(`/api/tasks/${id}`, { method: 'DELETE' });
         removeTask(id)
     };
-    console.log(tasks);
 
     return (
         <div className="max-w-3xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
@@ -24,12 +25,16 @@ export default function TaskList() {
                             <p className="text-lg font-medium text-gray-800">{task.title}</p>
                             <p className="text-sm text-gray-600">Asignado a: {task.user.name}</p>
                         </div>
-                        <button
-                            onClick={() => handleDelete(task.id)}
-                            className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 transition duration-200"
-                        >
-                            Eliminar
-                        </button>
+                        {session?.user?.role === "ADMIN" &&
+                            (
+                                <button
+                                    onClick={() => handleDelete(task.id)}
+                                    className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 transition duration-200"
+                                >
+                                    Eliminar
+                                </button>
+                            )
+                        }
                     </div>
                 ))}
             </div>
