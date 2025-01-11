@@ -15,7 +15,7 @@ export default function Unauthorized() {
                         You do not have permission to access this page. Please sign in to continue.
                     </p>
                     <div className='flex flex-col space-y-4'>
-                        <Link href="/login" className="w-full bg-purple-600 dark:bg-purple-700 px-3 text-white py-2 rounded-md text-center hover:bg-purple-700 dark:hover:bg-purple-800">
+                        <Link href="/auth/login" className="w-full bg-purple-600 dark:bg-purple-700 px-3 text-white py-2 rounded-md text-center hover:bg-purple-700 dark:hover:bg-purple-800">
                             Go to Login
                         </Link>
                     </div>
