@@ -20,11 +20,12 @@ enum Role {
 }
 
 model User {
-  id    Int    @id @default(autoincrement())
-  name  String
-  email String @unique
-  tasks Task[]
-  role  Role   @default(USER)
+  id       Int     @id @default(autoincrement())
+  name     String
+  email    String  @unique
+  password String?
+  tasks    Task[]
+  role     Role    @default(USER)
 }
 
 model Task {
